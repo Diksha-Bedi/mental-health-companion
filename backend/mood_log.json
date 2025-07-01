@@ -1,0 +1,110 @@
+[
+  {
+    "timestamp": "2025-06-24 22:55:12",
+    "message": "I feel really anxious and sad today.\n",
+    "mood": "negative",
+    "compound_score": -0.6865
+  },
+  {
+    "timestamp": "2025-06-24 22:55:18",
+    "message": "I'm feeling very down and stressed today.\n",
+    "mood": "negative",
+    "compound_score": -0.2878
+  },
+  {
+    "timestamp": "2025-06-24 23:39:21",
+    "message": "I feel happy and excited today!",
+    "mood": "positive",
+    "compound_score": 0.75
+  },
+  {
+    "timestamp": "2025-06-24 23:43:30",
+    "message": "I\u2019m feeling great and full of energy!",
+    "mood": "positive",
+    "compound_score": 0.7901
+  },
+  {
+    "timestamp": "2025-06-24 23:43:42",
+    "message": "I\u2019m feeling great and full of energy!",
+    "mood": "positive",
+    "compound_score": 0.7901
+  },
+  {
+    "timestamp": "2025-06-24 23:55:32",
+    "message": "I'm feeling low today",
+    "mood": "negative",
+    "compound_score": -0.1531
+  },
+  {
+    "timestamp": "2025-06-25 00:02:01",
+    "message": "I am feeling very low today!",
+    "mood": "negative",
+    "compound_score": -0.2926
+  },
+  {
+    "timestamp": "2025-06-25 00:02:41",
+    "message": "I am feeling very happy today!",
+    "mood": "positive",
+    "compound_score": 0.6989
+  },
+  {
+    "timestamp": "2025-06-25 00:10:35",
+    "message": "I had a regular day. Nothing much happened!",
+    "mood": "neutral",
+    "compound_score": 0.0
+  },
+  {
+    "timestamp": "2025-06-25 00:11:32",
+    "message": "Nothing is going right. I am very frustrated!",
+    "mood": "negative",
+    "compound_score": -0.6105
+  },
+  {
+    "timestamp": "2025-06-25 00:12:28",
+    "message": "Life is beautiful and I feel grateful!",
+    "mood": "positive",
+    "compound_score": 0.8016
+  },
+  {
+    "timestamp": "2025-06-25 00:17:40",
+    "message": "I had a regular day. Nothing much happened.",
+    "mood": "neutral",
+    "compound_score": 0.0
+  },
+  {
+    "timestamp": "2025-06-25 00:18:46",
+    "message": "I just want to cry. Everything feels very heavy!",
+    "mood": "negative",
+    "compound_score": -0.4753
+  },
+  {
+    "timestamp": "2025-06-25 00:19:34",
+    "message": "I'm so happy to catch up with my friends this evening!",
+    "mood": "positive",
+    "compound_score": 0.8118
+  },
+  {
+    "timestamp": "2025-06-25 00:22:00",
+    "message": "Today was an amazing day. I got praised at my work.",
+    "mood": "positive",
+    "compound_score": 0.7906
+  },
+  {
+    "timestamp": "2025-06-25 00:22:47",
+    "message": "I just want to cry. Everything feels so heavy!",
+    "mood": "negative",
+    "compound_score": -0.4753
+  },
+  {
+    "timestamp": "2025-06-25 00:23:20",
+    "message": "It's just another day. Nothing special.",
+    "mood": "negative",
+    "compound_score": -0.3089
+  },
+  {
+    "timestamp": "2025-06-25 00:24:01",
+    "message": "I went for a walk and ate lunch. That's it.",
+    "mood": "neutral",
+    "compound_score": 0.0
+  }
+]
