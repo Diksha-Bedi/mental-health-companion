@@ -50,6 +50,11 @@ def get_mood_log():
         return jsonify(data), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route('/')
+def home():
+        return '✅ Mental Health Companion Backend is Live!'
+
 
 # REMOVE app.run(debug=True) FOR PRODUCTION
 # Gunicorn will handle the app launch
