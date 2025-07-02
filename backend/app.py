@@ -4,6 +4,8 @@ from sentiment_model import get_sentiment
 import json
 from datetime import datetime
 import os
+import nltk  # NEW
+nltk.data.path.append(os.path.join(os.getcwd(), 'nltk_data'))  # NEW
 from dotenv import load_dotenv
 load_dotenv()
 
