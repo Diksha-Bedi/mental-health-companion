@@ -4,11 +4,14 @@ from sentiment_model import get_sentiment
 import json
 from datetime import datetime
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 app = Flask(__name__)
 CORS(app)
 
-LOG_FILE = "mood_log.json"  # ✅ File where we store moods
+LOG_FILE = "mood_log.json"
 
 @app.route('/analyze-sentiment', methods=['POST'])
 def analyze_sentiment():
@@ -20,7 +23,6 @@ def analyze_sentiment():
 
     result = get_sentiment(message)
 
-    # Add logging logic 💾
     log_entry = {
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "message": message,
@@ -28,7 +30,6 @@ def analyze_sentiment():
         "compound_score": result["scores"]["compound"]
     }
 
-    # Append to JSON file
     if os.path.exists(LOG_FILE):
         with open(LOG_FILE, "r+") as file:
             data = json.load(file)
@@ -41,8 +42,6 @@ def analyze_sentiment():
 
     return jsonify(result), 200
 
-
-# ✅ ADD THIS BELOW ↑ and BEFORE the __main__ block
 @app.route('/mood-log', methods=['GET'])
 def get_mood_log():
     try:
@@ -52,6 +51,5 @@ def get_mood_log():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
+# REMOVE app.run(debug=True) FOR PRODUCTION
+# Gunicorn will handle the app launch
