@@ -28,6 +28,12 @@ ChartJS.register(
   ArcElement
 );
 
+const chartContainerStyle = {
+  maxWidth: "700px",
+  margin: "2rem auto",
+  padding: "1rem"
+};
+
 const MoodAnalytics = () => {
   const [moodCounts, setMoodCounts] = useState({ positive: 0, negative: 0, neutral: 0 });
   const [trendData, setTrendData] = useState([]);
@@ -38,7 +44,8 @@ const MoodAnalytics = () => {
 
   const fetchMoodLog = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:5000/mood-log");
+      const baseURL = import.meta.env.VITE_BACKEND_URL || "https://mental-health-backend-g4mh.onrender.com";
+      const res = await axios.get(`${baseURL}/mood-log`);
       const log = res.data;
 
       const moodCount = { positive: 0, negative: 0, neutral: 0 };
@@ -178,14 +185,15 @@ const MoodAnalytics = () => {
         maxWidth: "750px",
         margin: "2rem auto",
         padding: "1.5rem",
-        backgroundColor: darkMode ? "rgba(34, 34, 34, 0.9)" : "rgba(255, 255, 255, 0.9)", // ✨ translucent background
+        backgroundColor: darkMode ? "rgba(34, 34, 34, 0.9)" : "rgba(255, 255, 255, 0.9)",
         color: darkMode ? "#fff" : "#000",
         borderRadius: "10px",
         boxShadow: "0 0 15px rgba(0,0,0,0.1)",
         textAlign: "center",
-        backdropFilter: "blur(4px)" // optional: adds subtle blur
+        backdropFilter: "blur(4px)"
       }}>
         <h2>📊 Mood Analytics</h2>
+
         <div style={{ marginBottom: "1rem" }}>
           <button onClick={() => setDarkMode(!darkMode)} style={{ padding: "0.5rem 1rem", borderRadius: "6px", backgroundColor: darkMode ? "#f8f9fa" : "#343a40", color: darkMode ? "#000" : "#fff", border: "none", cursor: "pointer" }}>
             {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
@@ -202,11 +210,19 @@ const MoodAnalytics = () => {
         }</h4>
         <p style={{ fontSize: "1.2rem" }}>Positive: {moodCounts.positive} | Negative: {moodCounts.negative} | Neutral: {moodCounts.neutral}</p>
 
-        <Bar data={barData} options={{ animation: { duration: 1500 }, plugins: tooltipCallbacks }} />
+        <div style={chartContainerStyle}>
+          <Bar data={barData} options={{ animation: { duration: 1500 }, plugins: tooltipCallbacks }} />
+        </div>
+
         <h3 style={{ marginTop: "2rem" }}>📈 Mood Trend Over Time</h3>
-        <Line data={lineData} options={{ ...lineOptions, animation: { duration: 1500 } }} />
+        <div style={chartContainerStyle}>
+          <Line data={lineData} options={{ ...lineOptions, animation: { duration: 1500 } }} />
+        </div>
+
         <h3 style={{ marginTop: "2rem" }}>🧁 Mood Distribution</h3>
-        <Pie data={pieData} options={{ animation: { duration: 1500 }, plugins: tooltipCallbacks }} />
+        <div style={{ ...chartContainerStyle, maxWidth: "500px" }}>
+          <Pie data={pieData} options={{ animation: { duration: 1500 }, plugins: tooltipCallbacks }} />
+        </div>
 
         <div style={{ marginTop: "2rem" }}>
           <h3>🔍 Filter Mood Entries by Keyword</h3>

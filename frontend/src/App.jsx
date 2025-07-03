@@ -1,23 +1,30 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './App.css';
-import MoodAnalytics from './components/MoodAnalytics';
+import { Routes, Route, Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const App = () => {
+import MoodAnalytics from './components/MoodAnalytics';
+import ShareMoodForm from './components/ShareMoodForm';
+
+const Home = () => {
   const [message, setMessage] = useState('');
   const [response, setResponse] = useState(null);
+  const baseURL = import.meta.env.VITE_BACKEND_URL;
 
   const handleSend = async () => {
     if (!message.trim()) return;
 
     try {
-      const res = await axios.post('http://127.0.0.1:5000/analyze-sentiment', {
+      const res = await axios.post(`${baseURL}/analyze-sentiment`, {
         message: message
       });
       setResponse(res.data);
+      toast.success("Mood analyzed successfully! 😊");
     } catch (err) {
       console.error('Error:', err);
       setResponse({ error: 'Server error. Please try again later.' });
+      toast.error("Error analyzing mood 😞");
     }
   };
 
@@ -25,6 +32,7 @@ const App = () => {
     <div style={styles.pageWrapper}>
       <div style={styles.container}>
         <h1 style={styles.title}>Mental Health Companion Bot</h1>
+        <Link to="/share-your-mood" style={styles.shareLink}>📤 Share Mood Form</Link>
 
         <div style={styles.chatBox}>
           <textarea
@@ -34,7 +42,6 @@ const App = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-
           <button style={styles.button} onClick={handleSend}>Analyze</button>
 
           {response && (
@@ -60,7 +67,7 @@ const App = () => {
                     </a>
                   )}
                   {response.mood === "negative" && (
-                    <a href="https://www.youtube.com/watch?v=5jca-sWgemI" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.youtube.com/watch?v=9eBszTeOtns" target="_blank" rel="noopener noreferrer">
                       Try this relaxing meditation.
                     </a>
                   )}
@@ -76,12 +83,22 @@ const App = () => {
         </div>
       </div>
 
-      {/* ✅ Mood Analytics is outside the chat box and centered full-width */}
       <div style={{ maxWidth: '900px', margin: '2rem auto' }}>
-  <MoodAnalytics />
-</div>
+        <MoodAnalytics />
+      </div>
 
+      {/* ✅ Toast Notification Container */}
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
+  );
+};
+
+const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/share-your-mood" element={<ShareMoodForm />} />
+    </Routes>
   );
 };
 
@@ -100,6 +117,13 @@ const styles = {
   title: {
     fontSize: '1.8rem',
     marginBottom: '1.5rem'
+  },
+  shareLink: {
+    display: 'inline-block',
+    marginBottom: '1rem',
+    color: '#007bff',
+    textDecoration: 'underline',
+    cursor: 'pointer'
   },
   chatBox: {
     backgroundColor: '#f5f5f5',
